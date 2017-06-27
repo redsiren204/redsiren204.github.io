@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 {% endhighlight %}
 Trong chương trình có sử dụng thư viện math.h. Trong quá trình linker sẽ tiến hành lấy mã của hàm printf() trong thư viện để kết hợp với mã thông thường khác.
 <figure>
-	<a href="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png"><img src="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png"></a>
+	<a href="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png"><img src="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png" width="400"></a>
 	<figcaption><a href="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png" title="Quá trình biên dịch">Quá trình biên dịch</a>.</figcaption>
 </figure>
 
