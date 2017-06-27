@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 }
 Trong chương trình có sử dụng thư viện math.h. Trong quá trình linker sẽ tiến hành lấy mã của hàm printf() trong thư viện để kết hợp với mã thông thường khác.
 <figure>
-	<a href="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_b.jpg"><img src="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg"></a>
-	<figcaption><a href="http://www.flickr.com/photos/80901381@N04/7758832526/" title="Qúa trình biên dịch">Qúa trình biên dịch</a>.</figcaption>
+	<a href="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png"><img src="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png"></a>
+	<figcaption><a href="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/cross-compiler/CompilationProcess.png" title="Qúa trình biên dịch">Qúa trình biên dịch</a>.</figcaption>
 </figure>
 #### Cross compiler / Toolchain là gì?
 Có thể hiểu Cross compiler hay còn gọi là Toolchain như sau:
