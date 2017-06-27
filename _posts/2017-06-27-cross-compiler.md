@@ -54,7 +54,7 @@ Quá trình tạo và sử dụng Toolchain gồm 3 thành phần:
 ### Cách sử dụng cross compiler trên một hệ thống build với poky
 
 * Chỉnh sửa sdk, thêm các gói cần thiết dùng để compile source. Ví dụ:
-{% highlight c %}
+{% highlight sh %}
 $ {path}/package-core-standalone-sdk-target.bbappend
 RDEPENDS_${PN} += "\
 linux-libc-headers-base-dev \
@@ -64,18 +64,18 @@ gtk+-dev \
 "
 {% endhighlight %}
 * Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:
-{% highlight c %}
+{% highlight sh %}
 $ bitbake meta-toolchain
 {% endhighlight %}
 * Copy sdk sang máy host để cài đặt:
-{% highlight c %}
+{% highlight sh %}
 $ cp debian-eglibc-x86_64-meta-toolchain-x86_64-toolchain-8.0.sh <host_machine>
 {% endhighlight %}
 * Run script để cài đặt toolchain trên máy host. Script này sẽ set lại biến PATH để sử dụng build source
-{% highlight c %}
+{% highlight sh %}
 $ source /opt/debian/8.0/environment-setup-x86_64-debian-linux
 {% endhighlight %}
 * Cuối cùng sử dụng ${CC} thay vì gcc trên máy host để compiler source:
-{% highlight c %}
+{% highlight sh %}
 $ ${CC} -g abc.c -o  -lpthr -lX11 -ltzcs -ltzcs-s `pkg-config --cflags --libs gtk+-2.0`
 {% endhighlight %}
