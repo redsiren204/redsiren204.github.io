@@ -2,7 +2,7 @@
 layout: post
 title: "Cross compiler"
 date: 2017-06-27
-excerpt: "Tìm hỉêu về compiler"
+excerpt: "Tìm hiểu về compiler/toolchain"
 tags: [sample post, images, test]
 comments: true
 ---
@@ -11,7 +11,6 @@ comments: true
 Trình biên dịch, còn gọi là phần mềm biên dịch, compiler, là một chương trình máy tính làm công việc dịch một chuỗi các câu lệnh được viết bằng một ngôn ngữ lập trình (gọi là ngôn ngữ nguồn hay mã nguồn), thành một chương trình tương đương nhưng ở dưới dạng một ngôn ngữ máy tính mới (gọi là ngôn ngữ đích) và thường là ngôn ngữ ở cấp thấp hơn, như ngôn ngữ máy. Chương trình mới được dịch này gọi mã đối tượng.
 #### Qúa trình biên dịch
 Ví dụ có chương trình sau được lưu dưới tên mytest.c
-{% highlight html %}
 #include <stdio.h>
 #include <math.h>
 #define PI 3.14
@@ -23,7 +22,6 @@ int main(int argc, char **argv)
     printf("gia tri cos(%f) = %f \n", x, y);
     return 1;
 }
-{% endhighlight %}
 Trong chương trình có sử dụng thư viện math.h. Trong quá trình linker sẽ tiến hành lấy mã của hàm printf() trong thư viện để kết hợp với mã thông thường khác.
 <figure>
 	<a href="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_b.jpg"><img src="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg"></a>
@@ -40,14 +38,12 @@ Quá trình tạo và sử dụng Toolchain gồm 3 thành phần:
 #### Cách sử dụng cross compiler trên một hệ thống build với poky
 - Chỉnh sửa sdk, thêm các gói cần thiết dùng để compile source. Ví dụ:
 $ {path}/package-core-standalone-sdk-target.bbappend
-{% highlight html %}
 RDEPENDS_${PN} += "\
 linux-libc-headers-base-dev \
 tzcslib-dev \
 libtzcs-security-dev \
 gtk+-dev \
 "
-{% endhighlight %}
 - Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:
 $ bitbake meta-toolchain
 
