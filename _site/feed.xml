@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T15:50:01+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Cross compiler</title><link href="https://redsiren204.github.io/cross-compiler/" rel="alternate" type="text/html" title="Cross compiler" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/cross-compiler</id><content type="html" xml:base="https://redsiren204.github.io/cross-compiler/">&lt;h3 id=&quot;Định-nghĩa-trình-biên-dịch&quot;&gt;Định nghĩa trình biên dịch&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T15:55:19+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Cross compiler</title><link href="https://redsiren204.github.io/cross-compiler/" rel="alternate" type="text/html" title="Cross compiler" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/cross-compiler</id><content type="html" xml:base="https://redsiren204.github.io/cross-compiler/">&lt;h3 id=&quot;Định-nghĩa-trình-biên-dịch&quot;&gt;Định nghĩa trình biên dịch&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Trình biên dịch, còn gọi là phần mềm biên dịch, compiler, là một chương trình máy tính làm công việc dịch một chuỗi các câu lệnh được viết bằng một ngôn ngữ lập trình (gọi là ngôn ngữ nguồn hay mã nguồn), thành một chương trình tương đương nhưng ở dưới dạng một ngôn ngữ máy tính mới (gọi là ngôn ngữ đích) và thường là ngôn ngữ ở cấp thấp hơn, như ngôn ngữ máy. Chương trình mới được dịch này gọi mã đối tượng.&lt;/p&gt;
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     float x, y;
     x = PI / 3;
     y = cos(x);
-    printf(&quot;gia tri cos(%f) = %f \n&quot;, x, y);
+    printf(&quot;Value cos(%f) = %f \n&quot;, x, y);
     return 1;
 }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -49,23 +49,40 @@ Một source code được viết trên máy tính chạy chíp Intel (x86 platf
 &lt;h4 id=&quot;cách-sử-dụng-cross-compiler-trên-một-hệ-thống-build-với-poky&quot;&gt;Cách sử dụng cross compiler trên một hệ thống build với poky&lt;/h4&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Chỉnh sửa sdk, thêm các gói cần thiết dùng để compile source. Ví dụ:
-$ {path}/package-core-standalone-sdk-target.bbappend
-RDEPENDS_${PN} += “\
+  &lt;li&gt;Chỉnh sửa sdk, thêm các gói cần thiết dùng để compile source. Ví dụ:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;$ {path}/package-core-standalone-sdk-target.bbappend
+RDEPENDS_${PN} += &quot;\
 linux-libc-headers-base-dev \
 tzcslib-dev \
 libtzcs-security-dev \
 gtk+-dev \
-“&lt;/li&gt;
-  &lt;li&gt;Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:
-$ bitbake meta-toolchain&lt;/li&gt;
-  &lt;li&gt;Copy sdk sang máy host để cài đặt:
-$ cp debian-eglibc-x86_64-meta-toolchain-x86_64-toolchain-8.0.sh &lt;host_machine&gt;&lt;/host_machine&gt;&lt;/li&gt;
-  &lt;li&gt;Run script để cài đặt toolchain trên máy host. Script này sẽ set lại biến PATH để sử dụng build source
-$ source /opt/debian/8.0/environment-setup-x86_64-debian-linux&lt;/li&gt;
-  &lt;li&gt;Cuối cùng sử dụng ${CC} thay vì gcc trên máy host để compiler source:
-$ ${CC} -g abc.c -o  -lpthr -lX11 -ltzcs -ltzcs-s &lt;code class=&quot;highlighter-rouge&quot;&gt;pkg-config --cflags --libs gtk+-2.0&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="sample post" /><category term="images" /><category term="test" /><summary type="html">Tìm hiểu về Cross compiler / Toolchain</summary></entry><entry><title type="html">Moon Jekyll Theme</title><link href="https://redsiren204.github.io/moon-theme/" rel="alternate" type="text/html" title="Moon Jekyll Theme" /><published>2016-04-06T00:00:00+07:00</published><updated>2016-04-06T00:00:00+07:00</updated><id>https://redsiren204.github.io/moon-theme</id><content type="html" xml:base="https://redsiren204.github.io/moon-theme/">&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png&quot; alt=&quot;Moon Homepage&quot; /&gt;&lt;/p&gt;
+&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;$ bitbake meta-toolchain&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Copy sdk sang máy host để cài đặt:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;$ cp debian-eglibc-x86_64-meta-toolchain-x86_64-toolchain-8.0.sh &lt;span class=&quot;nt&quot;&gt;&amp;lt;host&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_machine&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Run script để cài đặt toolchain trên máy host. Script này sẽ set lại biến PATH để sử dụng build source&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;$ source /opt/debian/8.0/environment-setup-x86_64-debian-linux&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Cuối cùng sử dụng ${CC} thay vì gcc trên máy host để compiler source:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;$ ${CC} -g abc.c -o  -lpthr -lX11 -ltzcs -ltzcs-s `pkg-config --cflags --libs gtk+-2.0`&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sample post" /><category term="images" /><category term="test" /><summary type="html">Tìm hiểu về Cross compiler / Toolchain</summary></entry><entry><title type="html">Moon Jekyll Theme</title><link href="https://redsiren204.github.io/moon-theme/" rel="alternate" type="text/html" title="Moon Jekyll Theme" /><published>2016-04-06T00:00:00+07:00</published><updated>2016-04-06T00:00:00+07:00</updated><id>https://redsiren204.github.io/moon-theme</id><content type="html" xml:base="https://redsiren204.github.io/moon-theme/">&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png&quot; alt=&quot;Moon Homepage&quot; /&gt;&lt;/p&gt;
 
 &lt;center&gt;&lt;b&gt;Moon&lt;/b&gt; is a minimal, one column jekyll theme.&lt;/center&gt;
 
