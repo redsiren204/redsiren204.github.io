@@ -47,7 +47,7 @@ tzcslib-dev \
 libtzcs-security-dev \
 gtk+-dev \
 "
-{% highlight html %}
+{% endhighlight %}
 - Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:
 $ bitbake meta-toolchain
 
