@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T16:37:10+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T16:45:15+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
 
 &lt;p&gt;Gõ tiếng Việt trong Sublime Text
-Phiên bản có 2 nhánh cho ki ểu gõ VNI và TELEX được lưu lại tại branch VN_IME và branch TELEX.&lt;/p&gt;
+Phiên bản có 2 nhánh cho ki ểu gõ VNI và TELEX được lưu lại tại branch &lt;a href=&quot;https://github.com/88d52bdba0366127fffca9dfa93895/VN_IME&quot;&gt;VN_IME&lt;/a&gt; và branch &lt;a href=&quot;https://github.com/yehnkay/VN_IME/tree/TELEX&quot;&gt;TELEX&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;cài-đặt&quot;&gt;Cài đặt&lt;/h2&gt;
 
-&lt;p&gt;Package Control: Install Package -&amp;gt; Vn Ime
-Cài đặt bằng tay:&lt;/p&gt;
+&lt;p&gt;Package Control: Install Package -&amp;gt; Vn Ime.&lt;/p&gt;
+
+&lt;p&gt;Cài đặt bằng tay:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Trên Sublime Text, chọn Preferences -&amp;gt; Browse Packages để vào thư mục chứa Package&lt;/li&gt;
   &lt;li&gt;Mở Terminal và chạy dòng lệnh sau để clone Vietnamease IME:&lt;/li&gt;
@@ -17,9 +18,9 @@ Cài đặt bằng tay:&lt;/p&gt;
 &lt;h2 id=&quot;hướng-dẫn-sử-dụng&quot;&gt;Hướng dẫn sử dụng&lt;/h2&gt;
 
 &lt;p&gt;Nhấn phím F2 để bật/tắt gõ tiếng Việt, mặc định là kiểu VNI.
-Khi thanh status hiện chữ VN IME : ON là đang bật, VN IME: OFF là đang tắt.&lt;/p&gt;
+Khi thanh status hiện chữ &lt;code class=&quot;highlighter-rouge&quot;&gt;VN IME : ON&lt;/code&gt; là đang bật, &lt;code class=&quot;highlighter-rouge&quot;&gt;VN IME: OFF&lt;/code&gt; là đang tắt.&lt;/p&gt;
 
-&lt;p&gt;Để dùng kỉêu gõ TELEX, thêm giá trị telex trong tập tin cấu hình Preferences.sublime-settings tại Preferences -&amp;gt; Settings - User với giá trị true, như sau:&lt;/p&gt;
+&lt;p&gt;Để dùng kiểu gõ TELEX, thêm giá trị &lt;code class=&quot;highlighter-rouge&quot;&gt;telex&lt;/code&gt; trong tập tin cấu hình &lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences.sublime-settings&lt;/code&gt; tại &lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Settings - User&lt;/code&gt; với giá trị &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;, như sau:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;s&quot;&gt;&quot;telex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
