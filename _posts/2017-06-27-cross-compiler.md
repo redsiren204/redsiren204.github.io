@@ -51,9 +51,9 @@ Quá trình tạo và sử dụng Toolchain gồm 3 thành phần:
 * Host System: Hệ thống chạy chương trình toolchain để compile source của chương trình ứng dụng.
 * Target: Là hệ thống chạy các chương trình do hệ thống host tạo ra.
 
-#### Cách sử dụng cross compiler trên một hệ thống build với poky
+### Cách sử dụng cross compiler trên một hệ thống build với poky
 
-1. Chỉnh sửa sdk, thêm các gói cần thiết dùng để compile source. Ví dụ:
+* Chỉnh sửa sdk, thêm các gói cần thiết dùng để compile source. Ví dụ:
 {% highlight html %}
 $ {path}/package-core-standalone-sdk-target.bbappend
 RDEPENDS_${PN} += "\
@@ -63,19 +63,19 @@ libtzcs-security-dev \
 gtk+-dev \
 "
 {% endhighlight %}
-2. Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:
+* Build meta-toolchain sau khi chỉnh sửa sdk bằng poky:
 {% highlight html %}
 $ bitbake meta-toolchain
 {% endhighlight %}
-3. Copy sdk sang máy host để cài đặt:
+* Copy sdk sang máy host để cài đặt:
 {% highlight html %}
 $ cp debian-eglibc-x86_64-meta-toolchain-x86_64-toolchain-8.0.sh <host_machine>
 {% endhighlight %}
-4. Run script để cài đặt toolchain trên máy host. Script này sẽ set lại biến PATH để sử dụng build source
+* Run script để cài đặt toolchain trên máy host. Script này sẽ set lại biến PATH để sử dụng build source
 {% highlight html %}
 $ source /opt/debian/8.0/environment-setup-x86_64-debian-linux
 {% endhighlight %}
-5. Cuối cùng sử dụng ${CC} thay vì gcc trên máy host để compiler source:
+* Cuối cùng sử dụng ${CC} thay vì gcc trên máy host để compiler source:
 {% highlight html %}
 $ ${CC} -g abc.c -o  -lpthr -lX11 -ltzcs -ltzcs-s `pkg-config --cflags --libs gtk+-2.0`
 {% endhighlight %}
