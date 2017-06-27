@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T16:11:54+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Cross compiler</title><link href="https://redsiren204.github.io/cross-compiler/" rel="alternate" type="text/html" title="Cross compiler" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/cross-compiler</id><content type="html" xml:base="https://redsiren204.github.io/cross-compiler/">&lt;h3 id=&quot;Định-nghĩa-trình-biên-dịch&quot;&gt;Định nghĩa trình biên dịch&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T16:37:10+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
+
+&lt;p&gt;Gõ tiếng Việt trong Sublime Text
+Phiên bản có 2 nhánh cho ki ểu gõ VNI và TELEX được lưu lại tại branch VN_IME và branch TELEX.&lt;/p&gt;
+
+&lt;h2 id=&quot;cài-đặt&quot;&gt;Cài đặt&lt;/h2&gt;
+
+&lt;p&gt;Package Control: Install Package -&amp;gt; Vn Ime
+Cài đặt bằng tay:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Trên Sublime Text, chọn Preferences -&amp;gt; Browse Packages để vào thư mục chứa Package&lt;/li&gt;
+  &lt;li&gt;Mở Terminal và chạy dòng lệnh sau để clone Vietnamease IME:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/yehnkay/VN_IME&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;hướng-dẫn-sử-dụng&quot;&gt;Hướng dẫn sử dụng&lt;/h2&gt;
+
+&lt;p&gt;Nhấn phím F2 để bật/tắt gõ tiếng Việt, mặc định là kiểu VNI.
+Khi thanh status hiện chữ VN IME : ON là đang bật, VN IME: OFF là đang tắt.&lt;/p&gt;
+
+&lt;p&gt;Để dùng kỉêu gõ TELEX, thêm giá trị telex trong tập tin cấu hình Preferences.sublime-settings tại Preferences -&amp;gt; Settings - User với giá trị true, như sau:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;s&quot;&gt;&quot;telex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Hoặc đến thư mục chứa VN_IME và checkout branch TELEX.
+VD:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;/.config/sublime-text-3/Packages/VN_IME/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;checkout branch TELEX&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sample post" /><category term="images" /><category term="test" /><summary type="html">Cách gõ tiếng Việt trong Sublime Text</summary></entry><entry><title type="html">Cross compiler</title><link href="https://redsiren204.github.io/cross-compiler/" rel="alternate" type="text/html" title="Cross compiler" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/cross-compiler</id><content type="html" xml:base="https://redsiren204.github.io/cross-compiler/">&lt;h3 id=&quot;Định-nghĩa-trình-biên-dịch&quot;&gt;Định nghĩa trình biên dịch&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Trình biên dịch, còn gọi là phần mềm biên dịch, compiler, là một chương trình máy tính làm công việc dịch một chuỗi các câu lệnh được viết bằng một ngôn ngữ lập trình (gọi là ngôn ngữ nguồn hay mã nguồn), thành một chương trình tương đương nhưng ở dưới dạng một ngôn ngữ máy tính mới (gọi là ngôn ngữ đích) và thường là ngôn ngữ ở cấp thấp hơn, như ngôn ngữ máy. Chương trình mới được dịch này gọi mã đối tượng.&lt;/p&gt;
