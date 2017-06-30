@@ -104,12 +104,12 @@ remote:   http://192.123.99.7:8000/1128
 remote:
 To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
  * [new branch]      HEAD -> refs/for/master
- {% endhighlight %}
+{% endhighlight %}
 
- ### 5. Trying out the Change
+### 5. Trying out the Change
 
- ### 6. Manually verifying the Change
+### 6. Manually verifying the Change
 
- ### 7. Submitting the Change
+### 7. Submitting the Change
 
- ## 4. Tổng kết
+## 4. Tổng kết
