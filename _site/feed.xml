@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-30T17:53:43+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gerit code review - Introduction</title><link href="https://redsiren204.github.io/gerrit-code-review-introduction/" rel="alternate" type="text/html" title="Gerit code review - Introduction" /><published>2017-06-28T00:00:00+07:00</published><updated>2017-06-28T00:00:00+07:00</updated><id>https://redsiren204.github.io/gerrit-code-review-introduction</id><content type="html" xml:base="https://redsiren204.github.io/gerrit-code-review-introduction/">&lt;p&gt;Các developer đã quen với các host version control như &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitbucket&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Google source&lt;/code&gt;…
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-30T18:05:49+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gerit code review - Introduction</title><link href="https://redsiren204.github.io/gerrit-code-review-introduction/" rel="alternate" type="text/html" title="Gerit code review - Introduction" /><published>2017-06-28T00:00:00+07:00</published><updated>2017-06-28T00:00:00+07:00</updated><id>https://redsiren204.github.io/gerrit-code-review-introduction</id><content type="html" xml:base="https://redsiren204.github.io/gerrit-code-review-introduction/">&lt;p&gt;Các developer đã quen với các host version control như &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitbucket&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Google source&lt;/code&gt;…
 Bài viết này giới thiệu về một công cụ quản lý và review source code cực hữu hiệu, tuy không còn mới lạ nhưng cũng là cái tên ít được nhắc đến - đó là Gerrit.&lt;/p&gt;
 
 &lt;h1 id=&quot;index&quot;&gt;Index&lt;/h1&gt;
@@ -8,7 +8,7 @@ Bài viết này giới thiệu về một công cụ quản lý và review sour
   &lt;li&gt;Part 3 - Tích hợp CI / CD&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;gerrit-là-gì&quot;&gt;Gerrit là gì?&lt;/h2&gt;
+&lt;h2 id=&quot;1-gerrit-là-gì&quot;&gt;1. Gerrit là gì?&lt;/h2&gt;
 
 &lt;p&gt;Gerrit là một công cụ hỗ trợ quản lý và review source code dựa trên nền tảng web, sử dụng git làm version control, được phát triển tại Google bởi Shawn Pearce trong quá trình phát triển dự án Android. Gerrit phiên bản 2.x được viết bằng Java trên nền J2EE servlet container. Gerrit là open source, nó hoàn toàn free và bạn có thể sử dụng nó làm công cụ quản lý và review source code cho team của mình.&lt;/p&gt;
 
@@ -17,32 +17,47 @@ Bài viết này giới thiệu về một công cụ quản lý và review sour
 &lt;p&gt;Gerrit không đơn thuần chỉ là công cụ review mà nó còn có thể sử dụng để xây dựng một server quản lý source code giống như github, gitbuckit.&lt;/p&gt;
 
 &lt;p&gt;Những lý do mà bạn nên sử dụng Gerrit:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit&lt;/li&gt;
-  &lt;li&gt;Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào&lt;/li&gt;
-  &lt;li&gt;Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Home page : https://www.gerritcodereview.com/&lt;/p&gt;
 
-&lt;h2 id=&quot;gerrit-tổ-chức&quot;&gt;Gerrit tổ chức&lt;/h2&gt;
+&lt;h2 id=&quot;2-tổ-chức-gerrit&quot;&gt;2. Tổ chức Gerrit&lt;/h2&gt;
 
+&lt;figure&gt;
+	&lt;a href=&quot;https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/gerrit-part1/intro-quick-central-gerrit.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/gerrit-part1/intro-quick-central-gerrit.png&quot; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
 &lt;p&gt;Gerrit sử dụng &lt;code class=&quot;highlighter-rouge&quot;&gt;Git&lt;/code&gt; làm version control, nó xây dựng một khối repository - nơi lưu trữ main source (&lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative Repository&lt;/code&gt;) và các commit của developers cần được review từ phía reviewers (&lt;code class=&quot;highlighter-rouge&quot;&gt;Pending Changes&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;Các developers sẽ Fetch source từ &lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative Repository&lt;/code&gt;. Mỗi khi hoàn thành một task/change, thay vì push vào repository này, họ phải push vào khối &lt;code class=&quot;highlighter-rouge&quot;&gt;Pending Changes&lt;/code&gt;. Điều này đảm bảo rằng mọi commit cần được &lt;code class=&quot;highlighter-rouge&quot;&gt;Approve&lt;/code&gt; từ &lt;code class=&quot;highlighter-rouge&quot;&gt;Reviewer&lt;/code&gt; (việc push vào &lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative Repository&lt;/code&gt; chỉ khi có permission đặc biệt). Một khi change đã được approved, user có permission đặc biệt này có thể submit để merge change sang &lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative repository&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Trong một vài tổ chức team khác nhau, các commit pending changes này cũng có thể được auto verify bởi &lt;code class=&quot;highlighter-rouge&quot;&gt;CI Build Server&lt;/code&gt; (eg : Jenkins) trước khi thực hiện verify bởi yếu tố con người (Reviewer) - điều này giúp cho developer và reviewer phát hiện được lỗi sớm nhất.&lt;/p&gt;
 
-&lt;h2 id=&quot;vòng-đời-và-các-thay-đổi-của-change&quot;&gt;Vòng đời và các thay đổi của Change&lt;/h2&gt;
+&lt;h2 id=&quot;3-vòng-đời-và-các-thay-đổi-của-change&quot;&gt;3. Vòng đời và các thay đổi của Change&lt;/h2&gt;
 
 &lt;p&gt;Lấy ví dụ, chúng ta giả sử Gerrit server được chạy trên một server là 192.123.99.7 với HTTP interface trên cổng 8000 và SSH interface trên cổng 29418. Dự án chúng ta đang làm có tên là RecipeBook.&lt;/p&gt;
 
-&lt;h3 id=&quot;clone-the-repository&quot;&gt;Clone the Repository&lt;/h3&gt;
+&lt;h3 id=&quot;1-clone-the-repository&quot;&gt;1. Clone the Repository&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone ssh://192.123.99.7:29418/RecipeBook.git
 Cloning into RecipeBook…&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h3 id=&quot;create-the-reviewer&quot;&gt;Create the Reviewer&lt;/h3&gt;
+&lt;h3 id=&quot;2-create-the-reviewer&quot;&gt;2. Create the Reviewer&lt;/h3&gt;
 &lt;p&gt;Những thay đổi bạn thực hiện được lưu trên local khả dụng để review khi thực hiện lệnh push vào Gerrit server.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit -m “Create the Review”
@@ -63,7 +78,7 @@ To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
 
 &lt;p&gt;Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng refs/for/&lt;branch_name&gt; trên Gerrit server mà bạn push lên để tạo ra một review.&lt;/branch_name&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;review-the-change&quot;&gt;Review the Change&lt;/h3&gt;
+&lt;h3 id=&quot;3-review-the-change&quot;&gt;3. Review the Change&lt;/h3&gt;
 &lt;p&gt;Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. Code-review là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. Verifying là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.&lt;/p&gt;
 
 &lt;p&gt;Verification thường được thực hịên bởi một server build tự động. Gerrit Triggers Jenkins Plugin sẽ tự động build mỗi khi có thay đổi và cập nhật điểm verified theo đó.&lt;/p&gt;
@@ -77,7 +92,7 @@ To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
 
 &lt;p&gt;Trong trư ờng hợp commit không đư ợc chấp nhận, người push commit lên phải thực hiện rework.&lt;/p&gt;
 
-&lt;h3 id=&quot;reworking-the-change&quot;&gt;Reworking the Change&lt;/h3&gt;
+&lt;h3 id=&quot;4-reworking-the-change&quot;&gt;4. Reworking the Change&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&amp;lt;checkout first commit&amp;gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&amp;lt;rework&amp;gt;
@@ -95,7 +110,15 @@ remote:   http://192.123.99.7:8000/1128
 remote:
 To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
  &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;new branch]      HEAD -&amp;gt; refs/for/master
- &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="Gerrit" /><category term="review" /><category term="introduction" /><summary type="html">Giới thiệu về Gerrit code review</summary></entry><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;### 5. Trying out the Change&lt;/p&gt;
+
+&lt;p&gt;### 6. Manually verifying the Change&lt;/p&gt;
+
+&lt;p&gt;### 7. Submitting the Change&lt;/p&gt;
+
+&lt;p&gt;## 4. Tổng kết&lt;/p&gt;</content><category term="Gerrit" /><category term="review" /><category term="introduction" /><summary type="html">Giới thiệu về Gerrit code review</summary></entry><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
 
 &lt;p&gt;Gõ tiếng Việt trong Sublime Text
 Phiên bản có 2 nhánh cho ki ểu gõ VNI và TELEX được lưu lại tại branch &lt;a href=&quot;https://github.com/88d52bdba0366127fffca9dfa93895/VN_IME&quot;&gt;VN_IME&lt;/a&gt; và branch &lt;a href=&quot;https://github.com/yehnkay/VN_IME/tree/TELEX&quot;&gt;TELEX&lt;/a&gt;.&lt;/p&gt;

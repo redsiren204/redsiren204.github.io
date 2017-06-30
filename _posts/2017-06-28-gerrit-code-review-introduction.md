@@ -15,7 +15,7 @@ Bài viết này giới thiệu về một công cụ quản lý và review sour
 * Part 2 - Cài đặt, cấu hình Gerrit và authentication
 * Part 3 - Tích hợp CI / CD
 
-## Gerrit là gì?
+## 1. Gerrit là gì?
 
 Gerrit là một công cụ hỗ trợ quản lý và review source code dựa trên nền tảng web, sử dụng git làm version control, được phát triển tại Google bởi Shawn Pearce trong quá trình phát triển dự án Android. Gerrit phiên bản 2.x được viết bằng Java trên nền J2EE servlet container. Gerrit là open source, nó hoàn toàn free và bạn có thể sử dụng nó làm công cụ quản lý và review source code cho team của mình.
 
@@ -24,31 +24,34 @@ Gerrit được thiết kế để cung cấp một framework cho review mọi c
 Gerrit không đơn thuần chỉ là công cụ review mà nó còn có thể sử dụng để xây dựng một server quản lý source code giống như github, gitbuckit.
 
 Những lý do mà bạn nên sử dụng Gerrit:
-1. Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit
-2. Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào
-3. Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.
+* 1. Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit
+* 2. Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào
+* 3. Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.
 
 Home page : https://www.gerritcodereview.com/
 
-## Gerrit tổ chức
+## 2. Tổ chức Gerrit
 
+<figure>
+	<a href="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/gerrit-part1/intro-quick-central-gerrit.png"><img src="https://raw.githubusercontent.com/redsiren204/redsiren204.github.io/master/resources/gerrit-part1/intro-quick-central-gerrit.png"></a>
+</figure>
 Gerrit sử dụng `Git` làm version control, nó xây dựng một khối repository - nơi lưu trữ main source (`Authoritative Repository`) và các commit của developers cần được review từ phía reviewers (`Pending Changes`).
 
 Các developers sẽ Fetch source từ `Authoritative Repository`. Mỗi khi hoàn thành một task/change, thay vì push vào repository này, họ phải push vào khối `Pending Changes`. Điều này đảm bảo rằng mọi commit cần được `Approve` từ `Reviewer` (việc push vào `Authoritative Repository` chỉ khi có permission đặc biệt). Một khi change đã được approved, user có permission đặc biệt này có thể submit để merge change sang `Authoritative repository`.
 
 Trong một vài tổ chức team khác nhau, các commit pending changes này cũng có thể được auto verify bởi `CI Build Server` (eg : Jenkins) trước khi thực hiện verify bởi yếu tố con người (Reviewer) - điều này giúp cho developer và reviewer phát hiện được lỗi sớm nhất.
 
-## Vòng đời và các thay đổi của Change
+## 3. Vòng đời và các thay đổi của Change
 
 Lấy ví dụ, chúng ta giả sử Gerrit server được chạy trên một server là 192.123.99.7 với HTTP interface trên cổng 8000 và SSH interface trên cổng 29418. Dự án chúng ta đang làm có tên là RecipeBook.
 
-### Clone the Repository
+### 1. Clone the Repository
 {% highlight sh %}
 $ git clone ssh://192.123.99.7:29418/RecipeBook.git
 Cloning into RecipeBook…
 {% endhighlight %}
 
-### Create the Reviewer
+### 2. Create the Reviewer
 Những thay đổi bạn thực hiện được lưu trên local khả dụng để review khi thực hiện lệnh push vào Gerrit server.
 {% highlight sh %}
 $ git commit -m “Create the Review”
@@ -69,7 +72,7 @@ To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
 {% endhighlight %}
 Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng refs/for/<branch_name> trên Gerrit server mà bạn push lên để tạo ra một review.
 
-### Review the Change
+### 3. Review the Change
 Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. Code-review là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. Verifying là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.
 
 Verification thường được thực hịên bởi một server build tự động. Gerrit Triggers Jenkins Plugin sẽ tự động build mỗi khi có thay đổi và cập nhật điểm verified theo đó.
@@ -83,7 +86,7 @@ Các vote của một commit bao gồm: -2, -1, 0, 1, 2.
 
 Trong trư ờng hợp commit không đư ợc chấp nhận, người push commit lên phải thực hiện rework.
 
-### Reworking the Change
+### 4. Reworking the Change
 {% highlight sh %}
 $ <checkout first commit>
 $ <rework>
@@ -102,3 +105,11 @@ remote:
 To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
  * [new branch]      HEAD -> refs/for/master
  {% endhighlight %}
+
+ ### 5. Trying out the Change
+
+ ### 6. Manually verifying the Change
+
+ ### 7. Submitting the Change
+
+ ## 4. Tổng kết
