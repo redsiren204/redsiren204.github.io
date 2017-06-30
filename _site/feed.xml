@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-27T16:45:15+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-30T17:53:43+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gerit code review - Introduction</title><link href="https://redsiren204.github.io/gerrit-code-review-introduction/" rel="alternate" type="text/html" title="Gerit code review - Introduction" /><published>2017-06-28T00:00:00+07:00</published><updated>2017-06-28T00:00:00+07:00</updated><id>https://redsiren204.github.io/gerrit-code-review-introduction</id><content type="html" xml:base="https://redsiren204.github.io/gerrit-code-review-introduction/">&lt;p&gt;Các developer đã quen với các host version control như &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitbucket&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Google source&lt;/code&gt;…
+Bài viết này giới thiệu về một công cụ quản lý và review source code cực hữu hiệu, tuy không còn mới lạ nhưng cũng là cái tên ít được nhắc đến - đó là Gerrit.&lt;/p&gt;
+
+&lt;h1 id=&quot;index&quot;&gt;Index&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Part 1 - Introduction&lt;/li&gt;
+  &lt;li&gt;Part 2 - Cài đặt, cấu hình Gerrit và authentication&lt;/li&gt;
+  &lt;li&gt;Part 3 - Tích hợp CI / CD&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gerrit-là-gì&quot;&gt;Gerrit là gì?&lt;/h2&gt;
+
+&lt;p&gt;Gerrit là một công cụ hỗ trợ quản lý và review source code dựa trên nền tảng web, sử dụng git làm version control, được phát triển tại Google bởi Shawn Pearce trong quá trình phát triển dự án Android. Gerrit phiên bản 2.x được viết bằng Java trên nền J2EE servlet container. Gerrit là open source, nó hoàn toàn free và bạn có thể sử dụng nó làm công cụ quản lý và review source code cho team của mình.&lt;/p&gt;
+
+&lt;p&gt;Gerrit được thiết kế để cung cấp một framework cho review mọi commit trước khi nó được chấp nhận vào source code chính thức. Những thay đổi  được upload lên Gerrit nhưng không thực sự trở thành một chỉnh sửa của dự án cho đến khi chúng được review và chấp nhận.&lt;/p&gt;
+
+&lt;p&gt;Gerrit không đơn thuần chỉ là công cụ review mà nó còn có thể sử dụng để xây dựng một server quản lý source code giống như github, gitbuckit.&lt;/p&gt;
+
+&lt;p&gt;Những lý do mà bạn nên sử dụng Gerrit:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit&lt;/li&gt;
+  &lt;li&gt;Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào&lt;/li&gt;
+  &lt;li&gt;Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Home page : https://www.gerritcodereview.com/&lt;/p&gt;
+
+&lt;h2 id=&quot;gerrit-tổ-chức&quot;&gt;Gerrit tổ chức&lt;/h2&gt;
+
+&lt;p&gt;Gerrit sử dụng &lt;code class=&quot;highlighter-rouge&quot;&gt;Git&lt;/code&gt; làm version control, nó xây dựng một khối repository - nơi lưu trữ main source (&lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative Repository&lt;/code&gt;) và các commit của developers cần được review từ phía reviewers (&lt;code class=&quot;highlighter-rouge&quot;&gt;Pending Changes&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Các developers sẽ Fetch source từ &lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative Repository&lt;/code&gt;. Mỗi khi hoàn thành một task/change, thay vì push vào repository này, họ phải push vào khối &lt;code class=&quot;highlighter-rouge&quot;&gt;Pending Changes&lt;/code&gt;. Điều này đảm bảo rằng mọi commit cần được &lt;code class=&quot;highlighter-rouge&quot;&gt;Approve&lt;/code&gt; từ &lt;code class=&quot;highlighter-rouge&quot;&gt;Reviewer&lt;/code&gt; (việc push vào &lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative Repository&lt;/code&gt; chỉ khi có permission đặc biệt). Một khi change đã được approved, user có permission đặc biệt này có thể submit để merge change sang &lt;code class=&quot;highlighter-rouge&quot;&gt;Authoritative repository&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Trong một vài tổ chức team khác nhau, các commit pending changes này cũng có thể được auto verify bởi &lt;code class=&quot;highlighter-rouge&quot;&gt;CI Build Server&lt;/code&gt; (eg : Jenkins) trước khi thực hiện verify bởi yếu tố con người (Reviewer) - điều này giúp cho developer và reviewer phát hiện được lỗi sớm nhất.&lt;/p&gt;
+
+&lt;h2 id=&quot;vòng-đời-và-các-thay-đổi-của-change&quot;&gt;Vòng đời và các thay đổi của Change&lt;/h2&gt;
+
+&lt;p&gt;Lấy ví dụ, chúng ta giả sử Gerrit server được chạy trên một server là 192.123.99.7 với HTTP interface trên cổng 8000 và SSH interface trên cổng 29418. Dự án chúng ta đang làm có tên là RecipeBook.&lt;/p&gt;
+
+&lt;h3 id=&quot;clone-the-repository&quot;&gt;Clone the Repository&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone ssh://192.123.99.7:29418/RecipeBook.git
+Cloning into RecipeBook…&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;create-the-reviewer&quot;&gt;Create the Reviewer&lt;/h3&gt;
+&lt;p&gt;Những thay đổi bạn thực hiện được lưu trên local khả dụng để review khi thực hiện lệnh push vào Gerrit server.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit -m “Create the Review”
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin HEAD:refs/for/master                                                  
+Counting objects: 6, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Delta compression using up to 8 threads.
+Compressing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6/6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Writing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6/6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 596 bytes | 0 bytes/s, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Total 6 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+remote: Resolving deltas: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;4/4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+remote: Processing changes: new: 1, refs: 1, &lt;span class=&quot;k&quot;&gt;done    
+&lt;/span&gt;remote: 
+remote: New Changes:
+remote:   http://192.123.99.7:8000/1128 Create the Review
+remote: 
+To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;new branch]      HEAD -&amp;gt; refs/for/master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng refs/for/&lt;branch_name&gt; trên Gerrit server mà bạn push lên để tạo ra một review.&lt;/branch_name&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;review-the-change&quot;&gt;Review the Change&lt;/h3&gt;
+&lt;p&gt;Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. Code-review là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. Verifying là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.&lt;/p&gt;
+
+&lt;p&gt;Verification thường được thực hịên bởi một server build tự động. Gerrit Triggers Jenkins Plugin sẽ tự động build mỗi khi có thay đổi và cập nhật điểm verified theo đó.&lt;/p&gt;
+
+&lt;p&gt;Reviewer có thể download commit từ Gerrit server về local bằng 1 trong 2 cách: checkout hoặc cherry-pick.&lt;/p&gt;
+
+&lt;p&gt;Các vote của một commit bao gồm: -2, -1, 0, 1, 2.
+-1, +1 chỉ là các ý kiến. -2, +2 là chấp nhận hoặc block commit này.
+Để một commit được chấp nhận, phải có ít nhất 1 vote +2 và không có vote -2 nào.
+2 vote +1 không tương đương với 1 vote +2.&lt;/p&gt;
+
+&lt;p&gt;Trong trư ờng hợp commit không đư ợc chấp nhận, người push commit lên phải thực hiện rework.&lt;/p&gt;
+
+&lt;h3 id=&quot;reworking-the-change&quot;&gt;Reworking the Change&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&amp;lt;checkout first commit&amp;gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&amp;lt;rework&amp;gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit --amend
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin HEAD:refs/for/master
+Counting objects: 5, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Delta compression using up to 8 threads.
+Compressing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2/2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Writing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3/3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 546 bytes, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Total 3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+remote: Processing changes: updated: 1, &lt;span class=&quot;k&quot;&gt;done
+&lt;/span&gt;remote:
+remote: Updated Changes:
+remote:   http://192.123.99.7:8000/1128
+remote:
+To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
+ &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;new branch]      HEAD -&amp;gt; refs/for/master
+ &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="Gerrit" /><category term="review" /><category term="introduction" /><summary type="html">Giới thiệu về Gerrit code review</summary></entry><entry><title type="html">Gõ tiếng Việt trong Sublime Text</title><link href="https://redsiren204.github.io/go-tieng-viet-sublimetext/" rel="alternate" type="text/html" title="Gõ tiếng Việt trong Sublime Text" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/go-tieng-viet-sublimetext</id><content type="html" xml:base="https://redsiren204.github.io/go-tieng-viet-sublimetext/">&lt;h1 id=&quot;vietnamease-ime---bộ-gõ-tiếng-việt&quot;&gt;Vietnamease IME - Bộ gõ tiếng Việt&lt;/h1&gt;
 
 &lt;p&gt;Gõ tiếng Việt trong Sublime Text
 Phiên bản có 2 nhánh cho ki ểu gõ VNI và TELEX được lưu lại tại branch &lt;a href=&quot;https://github.com/88d52bdba0366127fffca9dfa93895/VN_IME&quot;&gt;VN_IME&lt;/a&gt; và branch &lt;a href=&quot;https://github.com/yehnkay/VN_IME/tree/TELEX&quot;&gt;TELEX&lt;/a&gt;.&lt;/p&gt;
@@ -662,43 +759,4 @@ Available values: [1..3].&lt;/li&gt;
 
 &lt;p&gt;Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.&lt;/p&gt;
 
-&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;</content><category term="sample post" /><category term="readability" /><category term="test" /><category term="image" /><category term="feature" /><summary type="html">A ton of text to test readability with image feature.</summary></entry><entry><title type="html">Testing Readability with a Bunch of Text</title><link href="https://redsiren204.github.io/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" /><published>2012-05-22T00:00:00+07:00</published><updated>2012-05-22T00:00:00+07:00</updated><id>https://redsiren204.github.io/readability-post</id><content type="html" xml:base="https://redsiren204.github.io/readability-post/">&lt;p&gt;Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h2 id=&quot;cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/h2&gt;
-
-&lt;p&gt;In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. Terry Richardson shabby chic +1, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sartorial hoodie&lt;/li&gt;
-  &lt;li&gt;Labore viral forage&lt;/li&gt;
-  &lt;li&gt;Tote bag selvage&lt;/li&gt;
-  &lt;li&gt;DIY exercitation et id ugh tumblr church-key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.&lt;/p&gt;
-
-&lt;p&gt;Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.&lt;/p&gt;
-
-&lt;h2 id=&quot;forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/h2&gt;
-
-&lt;p&gt;Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.&lt;/p&gt;
-
-&lt;h2 id=&quot;hoodie-duis&quot;&gt;Hoodie Duis&lt;/h2&gt;
-
-&lt;p&gt;Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.&lt;/p&gt;
-
-&lt;h3 id=&quot;thundercats-ho&quot;&gt;Thundercats Ho!&lt;/h3&gt;
-
-&lt;p&gt;Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.&lt;/p&gt;
-
-&lt;p&gt;Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.&lt;/p&gt;
-
-&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;</content><category term="sample post" /><category term="readability" /><category term="test" /><summary type="html">A ton of text to test readability.</summary></entry></feed>
+&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;</content><category term="sample post" /><category term="readability" /><category term="test" /><category term="image" /><category term="feature" /><summary type="html">A ton of text to test readability with image feature.</summary></entry></feed>
