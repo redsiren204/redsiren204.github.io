@@ -72,21 +72,21 @@ remote:
 To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
 * [new branch]      HEAD -> refs/for/master
 {% endhighlight %}
-Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng refs/for/<branch_name> trên Gerrit server mà bạn push lên để tạo ra một review.
+Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng `refs/for/<branch_name>` trên Gerrit server mà bạn push lên để tạo ra một review.
 
 ### 3. Review the Change
-Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. Code-review là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. Verifying là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.
+Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. `Code-review` là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. `Verifying` là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.
 
 Verification thường được thực hịên bởi một server build tự động. Gerrit Triggers Jenkins Plugin sẽ tự động build mỗi khi có thay đổi và cập nhật điểm verified theo đó.
 
-Reviewer có thể download commit từ Gerrit server về local bằng 1 trong 2 cách: checkout hoặc cherry-pick.
+Reviewer có thể download commit từ Gerrit server về local bằng 1 trong 2 cách: `checkout` hoặc `cherry-pick`.
 
 Các vote của một commit bao gồm: -2, -1, 0, 1, 2.
 -1, +1 chỉ là các ý kiến. -2, +2 là chấp nhận hoặc block commit này.
 Để một commit được chấp nhận, phải có ít nhất 1 vote +2 và không có vote -2 nào.
 2 vote +1 không tương đương với 1 vote +2.
 
-Trong trư ờng hợp commit không đư ợc chấp nhận, người push commit lên phải thực hiện rework.
+Trong trường hợp commit không được chấp nhận, người push commit lên phải thực hiện rework.
 
 ### 4. Reworking the Change
 Vì có cơ chế Change-Id message hook trước khi upload change, việc reworking trở nên dễ dàng hơn. Chúng ta chỉ cần checkout sau đó chỉnh sửa và commit với cùng Change-Id. Push change lên Gerrit để review lại cũng tương tự như cách chúng ta tạo ra review.
