@@ -24,9 +24,9 @@ Gerrit được thiết kế để cung cấp một framework cho review mọi c
 Gerrit không đơn thuần chỉ là công cụ review mà nó còn có thể sử dụng để xây dựng một server quản lý source code giống như github, gitbuckit.
 
 Những lý do mà bạn nên sử dụng Gerrit:
-* 1. Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit
-* 2. Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào
-* 3. Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.
+* Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit
+* Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào
+* Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.
 
 Home page : https://www.gerritcodereview.com/
 
@@ -50,6 +50,8 @@ Lấy ví dụ, chúng ta giả sử Gerrit server được chạy trên một s
 $ git clone ssh://192.123.99.7:29418/RecipeBook.git
 Cloning into RecipeBook…
 {% endhighlight %}
+
+Ta phải tạo ra thay đổi và commit nó ở local. Mỗi commit của Gerrit sẽ được thêm 1 Change-Id trong commit massage, mục đích là Gerrit có thể link các version khác nhau của cùng một thay đổi đang được review. Gerrit chứa một tiêu chuẩn Change-Id commit-msg hook mà nó sinh ra một Change-Id duy nhất khi bạn commit.
 
 ### 2. Create the Reviewer
 Những thay đổi bạn thực hiện được lưu trên local khả dụng để review khi thực hiện lệnh push vào Gerrit server.
@@ -87,6 +89,7 @@ Các vote của một commit bao gồm: -2, -1, 0, 1, 2.
 Trong trư ờng hợp commit không đư ợc chấp nhận, người push commit lên phải thực hiện rework.
 
 ### 4. Reworking the Change
+Vì có cơ chế Change-Id message hook trước khi upload change, việc reworking trở nên dễ dàng hơn. Chúng ta chỉ cần checkout sau đó chỉnh sửa và commit với cùng Change-Id. Push change lên Gerrit để review lại cũng tương tự như cách chúng ta tạo ra review.
 {% highlight sh %}
 $ <checkout first commit>
 $ <rework>
