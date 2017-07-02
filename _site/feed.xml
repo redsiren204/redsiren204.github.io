@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-06-30T18:11:17+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gerit code review - Introduction</title><link href="https://redsiren204.github.io/gerrit-code-review-introduction/" rel="alternate" type="text/html" title="Gerit code review - Introduction" /><published>2017-06-28T00:00:00+07:00</published><updated>2017-06-28T00:00:00+07:00</updated><id>https://redsiren204.github.io/gerrit-code-review-introduction</id><content type="html" xml:base="https://redsiren204.github.io/gerrit-code-review-introduction/">&lt;p&gt;Các developer đã quen với các host version control như &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitbucket&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Google source&lt;/code&gt;…
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://redsiren204.github.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://redsiren204.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://redsiren204.github.io/" rel="alternate" type="text/html" /><updated>2017-07-02T09:05:03+07:00</updated><id>https://redsiren204.github.io/</id><title type="html">TamTV’s blog</title><subtitle>Writing code everyday...</subtitle><entry><title type="html">Gerit code review - Introduction</title><link href="https://redsiren204.github.io/gerrit-code-review-introduction/" rel="alternate" type="text/html" title="Gerit code review - Introduction" /><published>2017-06-28T00:00:00+07:00</published><updated>2017-06-28T00:00:00+07:00</updated><id>https://redsiren204.github.io/gerrit-code-review-introduction</id><content type="html" xml:base="https://redsiren204.github.io/gerrit-code-review-introduction/">&lt;p&gt;Các developer đã quen với các host version control như &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitbucket&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Google source&lt;/code&gt;…
 Bài viết này giới thiệu về một công cụ quản lý và review source code cực hữu hiệu, tuy không còn mới lạ nhưng cũng là cái tên ít được nhắc đến - đó là Gerrit.&lt;/p&gt;
 
 &lt;h1 id=&quot;index&quot;&gt;Index&lt;/h1&gt;
@@ -18,21 +18,9 @@ Bài viết này giới thiệu về một công cụ quản lý và review sour
 
 &lt;p&gt;Những lý do mà bạn nên sử dụng Gerrit:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;ol&gt;
-      &lt;li&gt;Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;ol&gt;
-      &lt;li&gt;Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;ol&gt;
-      &lt;li&gt;Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Bạn có thể dễ dàng tìm lỗi trong thay đổi của commit&lt;/li&gt;
+  &lt;li&gt;Bạn có thể làm việc với Gerrit, nếu bạn có Git client, không cần cài đặt thêm bất kỳ Gerrit client nào&lt;/li&gt;
+  &lt;li&gt;Gerrit có thể được sử dụng như một trung gian giữa các developers và git repositories.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Home page : https://www.gerritcodereview.com/&lt;/p&gt;
@@ -57,6 +45,8 @@ Bài viết này giới thiệu về một công cụ quản lý và review sour
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone ssh://192.123.99.7:29418/RecipeBook.git
 Cloning into RecipeBook…&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;p&gt;Ta phải tạo ra thay đổi và commit nó ở local. Mỗi commit của Gerrit sẽ được thêm 1 Change-Id trong commit massage, mục đích là Gerrit có thể link các version khác nhau của cùng một thay đổi đang được review. Gerrit chứa một tiêu chuẩn Change-Id commit-msg hook mà nó sinh ra một Change-Id duy nhất khi bạn commit.&lt;/p&gt;
+
 &lt;h3 id=&quot;2-create-the-reviewer&quot;&gt;2. Create the Reviewer&lt;/h3&gt;
 &lt;p&gt;Những thay đổi bạn thực hiện được lưu trên local khả dụng để review khi thực hiện lệnh push vào Gerrit server.&lt;/p&gt;
 
@@ -76,23 +66,24 @@ remote:
 To ssh://tamtv@192.123.99.7:29418/RecipeBook.git
 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;new branch]      HEAD -&amp;gt; refs/for/master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng refs/for/&lt;branch_name&gt; trên Gerrit server mà bạn push lên để tạo ra một review.&lt;/branch_name&gt;&lt;/p&gt;
+&lt;p&gt;Tương ứng mỗi branch trên Authoritative repository có một branch tương ứng &lt;code class=&quot;highlighter-rouge&quot;&gt;refs/for/&amp;lt;branch_name&amp;gt;&lt;/code&gt; trên Gerrit server mà bạn push lên để tạo ra một review.&lt;/p&gt;
 
 &lt;h3 id=&quot;3-review-the-change&quot;&gt;3. Review the Change&lt;/h3&gt;
-&lt;p&gt;Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. Code-review là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. Verifying là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.&lt;/p&gt;
+&lt;p&gt;Work-flow mặc định của Gerrit yêu cầu 2 bước kiểm tra trước khi một commit được chấp nhận. &lt;code class=&quot;highlighter-rouge&quot;&gt;Code-review&lt;/code&gt; là một ai đó nhìn vào code, để xem code đó có phù hợp với các tiêu chuẩn như project guideline, intent,.. &lt;code class=&quot;highlighter-rouge&quot;&gt;Verifying&lt;/code&gt; là để kỉêm tra rằng sự thay đổi này có thể build đư ợc hay không, có thể pass các test case hay không.&lt;/p&gt;
 
 &lt;p&gt;Verification thường được thực hịên bởi một server build tự động. Gerrit Triggers Jenkins Plugin sẽ tự động build mỗi khi có thay đổi và cập nhật điểm verified theo đó.&lt;/p&gt;
 
-&lt;p&gt;Reviewer có thể download commit từ Gerrit server về local bằng 1 trong 2 cách: checkout hoặc cherry-pick.&lt;/p&gt;
+&lt;p&gt;Reviewer có thể download commit từ Gerrit server về local bằng 1 trong 2 cách: &lt;code class=&quot;highlighter-rouge&quot;&gt;checkout&lt;/code&gt; hoặc &lt;code class=&quot;highlighter-rouge&quot;&gt;cherry-pick&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Các vote của một commit bao gồm: -2, -1, 0, 1, 2.
 -1, +1 chỉ là các ý kiến. -2, +2 là chấp nhận hoặc block commit này.
 Để một commit được chấp nhận, phải có ít nhất 1 vote +2 và không có vote -2 nào.
 2 vote +1 không tương đương với 1 vote +2.&lt;/p&gt;
 
-&lt;p&gt;Trong trư ờng hợp commit không đư ợc chấp nhận, người push commit lên phải thực hiện rework.&lt;/p&gt;
+&lt;p&gt;Trong trường hợp commit không được chấp nhận, người push commit lên phải thực hiện rework.&lt;/p&gt;
 
 &lt;h3 id=&quot;4-reworking-the-change&quot;&gt;4. Reworking the Change&lt;/h3&gt;
+&lt;p&gt;Vì có cơ chế Change-Id message hook trước khi upload change, việc reworking trở nên dễ dàng hơn. Chúng ta chỉ cần checkout sau đó chỉnh sửa và commit với cùng Change-Id. Push change lên Gerrit để review lại cũng tương tự như cách chúng ta tạo ra review.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&amp;lt;checkout first commit&amp;gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&amp;lt;rework&amp;gt;
@@ -149,7 +140,7 @@ Khi thanh status hiện chữ &lt;code class=&quot;highlighter-rouge&quot;&gt;VN
 VD:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;/.config/sublime-text-3/Packages/VN_IME/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;checkout branch TELEX&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sample post" /><category term="images" /><category term="test" /><summary type="html">Cách gõ tiếng Việt trong Sublime Text</summary></entry><entry><title type="html">Cross compiler</title><link href="https://redsiren204.github.io/cross-compiler/" rel="alternate" type="text/html" title="Cross compiler" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/cross-compiler</id><content type="html" xml:base="https://redsiren204.github.io/cross-compiler/">&lt;h3 id=&quot;Định-nghĩa-trình-biên-dịch&quot;&gt;Định nghĩa trình biên dịch&lt;/h3&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;checkout branch TELEX&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><category term="sample post" /><category term="images" /><category term="test" /><summary type="html">Cách gõ tiếng Việt trong Sublime Text</summary></entry><entry><title type="html">Cross compiler</title><link href="https://redsiren204.github.io/cross-compiler/" rel="alternate" type="text/html" title="Cross compiler" /><published>2017-06-27T00:00:00+07:00</published><updated>2017-06-27T00:00:00+07:00</updated><id>https://redsiren204.github.io/cross-compiler</id><content type="html" xml:base="https://redsiren204.github.io/cross-compiler/">&lt;h3 id=&quot;định-nghĩa-trình-biên-dịch&quot;&gt;Định nghĩa trình biên dịch&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Trình biên dịch, còn gọi là phần mềm biên dịch, compiler, là một chương trình máy tính làm công việc dịch một chuỗi các câu lệnh được viết bằng một ngôn ngữ lập trình (gọi là ngôn ngữ nguồn hay mã nguồn), thành một chương trình tương đương nhưng ở dưới dạng một ngôn ngữ máy tính mới (gọi là ngôn ngữ đích) và thường là ngôn ngữ ở cấp thấp hơn, như ngôn ngữ máy. Chương trình mới được dịch này gọi mã đối tượng.&lt;/p&gt;
@@ -650,7 +641,10 @@ mathjax: true
 
 &lt;p&gt;An example of a Gist embed below.&lt;/p&gt;
 
-&lt;p&gt;true&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;404: Not Found
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/mmistakes/6589546.js&quot;&gt; &lt;/script&gt;
+
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:1&quot;&gt;
