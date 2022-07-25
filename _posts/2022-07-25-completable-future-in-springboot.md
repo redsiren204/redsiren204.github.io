@@ -31,9 +31,8 @@ Từ Java 8 chúng ta có thể sử dụng CompletableFuture để xử lý cá
 
 ## 1. Complete() và get()
 Ví dụ khi bạn muốn vừa nấu cơm vừa rang thịt:
-{% highlight java %}
-package app.tuanluc.processor;
 
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -74,15 +73,15 @@ public class Cook {
         return "Thịt rang";
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Làm bữa tối
 Rang thịt ... 
 Nấu cơm ... 
 Rang xong
 Ăn tối với: Thịt rang và Gạo
-{% endhighlight %}
+```
 Sau khi rang thịt xong bạn muốn lấy cơm ra ăn luôn nhưng vì nấu cơm mất nhiều thời gian hơn nên chỉ có gạo mà thôi
 
 Trong ví dụ trên, chúng ta đã thực hiện:
@@ -101,9 +100,7 @@ Nếu muốn chạy một số task bất đồng bộ và không muốn trả v
 ** Kiểm tra đơn hàng ở kho nào rồi update lại số lượng của hàng trong kho.
 ** Tính tiền cho telesale đã bán được hàng.
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -147,16 +144,16 @@ public class HandleOffer {
         }
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 updateTelesale is running... in main thread
 updateStoreage is running in a other thread.
 Đã cộng tiền cho telesale thành công 
 Đã giảm số lượng hàng trong kho thành công 
 Hoàn thành process trong :5087ms
-{% endhighlight %}
+```
 Ở ví dụ trên việc update storeage hay update telesale trong model đều mất mỗi việc 5s nhưng khi chạy bất đồng bộ thì thời gian hoàn thành chỉ là 5087ms giống như làm 1 việc vậy.
 
 ### supplyAsync()
@@ -164,8 +161,7 @@ Cách hoạt động của `supplyAsync()` cũng giống hệt `runAsync()` như
 
 Vẫn ví dụ về xử lý đơn hàng đã bán được ở trên nhưng lần này có thêm 1 việc sau khi cập nhập lại số lượng hàng trong kho đó là chúng ta phải thông báo lại số lượng hàng trong kho.
 
-{% highlight java %}
-package app.tuanluc.processor;
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -211,9 +207,9 @@ public class HandleOffer2 {
         }
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 updateTelesale is running... in main thread
 updateStoreage is running in a other thread.
@@ -221,7 +217,7 @@ updateStoreage is running in a other thread.
 Đã giảm số lượng hàng trong kho thành công 
 Số lượng hàng còn trong kho :0
 Hoàn thành process trong :5087ms
-{% endhighlight %}
+```
 
 ## 3. Chuyển đổi và thao tác trên CompletableFuture
 ### thenApply(), thenAccept() và thenRun()
@@ -239,9 +235,7 @@ Tiếp tục với bài toán đơn hàng, Vậy là sau khi kiểm tra hàng đ
 * Thông báo với shiper đến lấy hàng.
 * Gửi tin nhắn tới khách hàng chuấn bị nhận hàng.
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -287,16 +281,16 @@ public class HandleDelivery {
         }
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 done task : checkReadyDelivery
 done task : sendMessageToCustomer
 done task : callShipper
 Gọi shipper thành công
 Hoàn thành process trong :15103 ms
-{% endhighlight %}
+```
 
 ### Có thể gọi thenApply(), thenAccept() và thenRun() nhiều lần để tạo thành một chuỗi xử lý (chain).
 
@@ -306,9 +300,7 @@ Thực tế thì các method trong CompletableFuture nếu có hậu tố Async 
 
 Vậy để xử lý đồng bộ bài toàn delivery trên ta có thể dùng thenApplyAsync(), thenAcceptAsync() và thenRunAsync().
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -354,16 +346,16 @@ public class HandleDelivery2 {
         }
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 done task : checkReadyDelivery
 done task : callShipper
 done task : sendMessageToCustomer
 Gọi shipper thành công
 Hoàn thành process trong :10086 ms
-{% endhighlight %}
+```
 Vậy là thời gian khi sử lý bất đồng bộ đã giảm chỉ còn 10s.
 
 ## 4. Kết hợp hai CompletableFutures với nhau
@@ -373,10 +365,7 @@ Khi muốn 2 CompletableFutures phụ thuộc vào nhau ta sử dụng thenCompo
 
 Ví dụ sau khi bạn muốn lấy thông tin của một quyển sách từ 1 api, và từ thông tin vừa lâý được bạn cần tính giá tiền của quyển sách từ api khác.
 
-{% highlight java %}
-package app.tuanluc.processor;
-
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -425,7 +414,7 @@ public class CompletableFuture6 {
         System.out.println(flattened.get());
     }
 }
-{% endhighlight %}
+```
 Nhiều người sẽ thấy việc dùng thenCompose() giống với thenApply() vậy tại sao ko dùng luôn thenApply()? Đơn giản là vì phương thức thenApply() trả về một `CompletableFuture<T>`, T là một giá trị nhận được từ kết quả của `supplyAsync()`, như trong ví dụ này nó sẽ trả về `CompletableFuture<CompletableFuture<Double>>`. Để có thể nhận được trực tiếp CompletableFuture<Double> chúng ta cần sử dụng phương thức thenCompose().
 
 ### thenCombine()
@@ -433,9 +422,7 @@ Nếu muốn 2 completableFuture chạy độc lập sau đó cần xử lý chu
 
 VD Bạn muốn làm một báo cáo về tỉ lệ “mua hàng/xem hàng” chúng ta cần tính toán hoặc lấy về dữ liệu về số lượt truy cập vào xem hàng, đồng thời lấy về thông tin số lượt mua hàng. Nhưng để tính được tỉ lệ thì phải cần cả 2 kết quả:
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -479,25 +466,23 @@ public class ReportBuyTimesPerViews {
         }
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 done task : getBuyTimes
 done task : getViews
 done task : computeBuyTimesPerViews
 Tỉ lệ : 0.069
 Hoàn thành process trong :10180 ms
-{% endhighlight %}
+```
 
 ## 5. Kết hợp nhiều completableFuture với allOf() và anyOf()
 `CompletableFuture.anyOf()` được sử dụng khi cần thực hiện một danh sách các CompletableFuture song song và nó sẽ hoàn thành khi bất kỳ task nào trong danh sách hoàn thành.
 
 Ví dụ với một ứng dụng gọi xe taxi, khi khách hàng đặt xe chúng ta sẽ liên hệ đồng thời tới nhiều xe taxi trong hãng ở gần đó, khi 1 tài xế nhanh nhất phản hồi nhất sẽ được kết nối và hủy các liên hệ khác.
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -545,23 +530,21 @@ public class CallTaxi {
         System.out.println("Hoàn thành process trong :" + (System.currentTimeMillis() - startTime) + "ms");
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
  Calling tài xế A ...
  Calling tài xế B ...
  Calling tài xế C ...
 Tài xế C đã phản hồi
 Hoàn thành process trong :2073 ms
-{% endhighlight %}
+```
 Tiếp theo, `CompletableFuture.allOf()` được sử dụng khi cần thực hiện một danh sách các tác vụ song song và làm điều gì đó sau khi tất cả chúng hoàn tất.
 
 Ví dụ để tăng tốc độ download file chúng ta nên chia file thành cách phần nhỏ rồi thực hiện download từng phần đến khi tất cả các phần đều hoàn thành thì tiến hành gộp thành file hoàn chỉnh.
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -621,9 +604,9 @@ public class DownloadMultiplePartFile {
         });
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 Downloading: Tập 2
 Downloading: Tập 1
@@ -643,7 +626,7 @@ Done: Tập 7
 Done: Tập đặc biệt
 Kết quả: Tập 1+Tập 2+Tập 3+Tập 4+Tập 5+Tập 6+Tập 7+Tập đặc biệt
 Hoàn thành process trong :16440
-{% endhighlight %}
+```
 Ví dụ trên các task được hoàn thành vào thời điểm khác nhau nhưng vẫn cùng phải đợi task chậm nhất để hoàn thành việc xử lý cuối cùng.
 
 Dù đã nhanh hơn so với xử lý đồng bộ (cần 40s cho 8 file) nhưng như bạn thấy mỗi file cần 5s để download nhưng chúng ta cần tới 16s nghĩa là không phải cả 8 file được download cùng 1 lúc vậy nên tối ưu như thế nào?
@@ -653,9 +636,7 @@ Với các method có hậu tố Async trong CompletableFuture chúng ta có th�
 
 Vậy để trả lời câu hỏi ở cuối phần trước chúng ta cần tự cấu hình một Executor có nhiều thread hơn để download file.
 
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
@@ -727,9 +708,9 @@ public class DownloadMultiplePartFileWithExecutor {
         }, pool);
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Start processor
 Downloading: Tập 1
 Downloading: Tập 2
@@ -749,7 +730,7 @@ Done: Tập 7
 Done: Tập đặc biệt
 Kết quả: Tập 1+Tập 2+Tập 3+Tập 4+Tập 5+Tập 6+Tập 7+Tập đặc biệt
 Hoàn thành process trong :6305
-{% endhighlight %}
+```
 Vậy là đến đây thì việc download file chỉ còn 6s bởi vì mỗi phần của file đã được chạy 1 luồng riêng.
 
 ## 7. Xử lý Exception trong CompletableFuture
@@ -758,9 +739,8 @@ Vậy là đến đây thì việc download file chỉ còn 6s bởi vì mỗi p
 Sử dụng `exceptionally()` để xử lý exception khi có bất cứ exeption nào được throw trong tất cả các phương thức trong CompletableFuture Chain.
 
 Ví dụ 1 CompletableFuture về xử lý nhập tuổi của người dùng.
-{% highlight java %}
-package app.tuanluc.processor;
 
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -785,20 +765,18 @@ public class HandleException {
         System.out.println("Maturity : " + handleAge.get());
     }
 }
-{% endhighlight %}
+```
 Output:
-{% highlight java %}
+```
 Bạn đã nhập sai tuổi - java.lang.IllegalArgumentException: Làm gì có ai sống lâu thế!
 Kết quả : Chưa rõ tuổi
-{% endhighlight %}
+```
 Khi ở trong chain có lỗi xảy ra! chúng ta xử lý bằng cách cho hiển thị đúng lỗi, và vẫn trả về kết quả “Chưa rõ tuổi”
 
 ### handle() và whenComplete()
 handle() luôn được gọi, cho dù có exception xảy ra hay không, nên phương thức này để xử lý ngoại lệ hoặc kết quả của CompletableFuture.
 Ví dụ:
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -829,13 +807,11 @@ public class HandleException2 {
         System.out.println("Kết quả : " + handleAge.get());
     }
 }
-{% endhighlight %}
+```
 
 ### whenComplete()
 Phương thức `whenComplete()` cũng tương tự `handle()`, nhưng nó không có quả trả về.
-{% highlight java %}
-package app.tuanluc.processor;
-
+```java
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -859,4 +835,4 @@ public class HandleException3 {
                 });
     }
 }
-{% endhighlight %}
+```
